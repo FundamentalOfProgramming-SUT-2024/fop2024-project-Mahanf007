@@ -676,7 +676,7 @@ void lock(int p){
     mvprintw(0,0,"enter you password");
     int pp;
     scanw("%d",&pp);
-    if(rand()%5){
+    if(rand()%20){
         if(pp==p){
             locker=0;
             return;
@@ -749,27 +749,52 @@ void moveroom(int pos,int x,int l,int h,int k){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage              ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='Q'||x=='Q'||z=='Q'||a=='Q'||d=='Q'||e=='Q'||w=='Q'||q=='Q'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage              ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='I'||x=='I'||z=='I'||a=='I'||d=='I'||e=='I'||w=='I'||q=='I'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage               ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='S'||x=='S'||z=='S'||a=='S'||d=='S'||e=='S'||w=='S'||q=='S'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage                ");
             modes=1;
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='U'||x=='U'||z=='U'||a=='U'||d=='U'||e=='U'||w=='U'||q=='U'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage                 ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         char m=getch();
         switch(m){
@@ -974,7 +999,7 @@ void moveroom(int pos,int x,int l,int h,int k){
                 }
                 mvprintw(1,70,"Gold:%d",counterB*3+counterG);
                mvaddch(k,h,'.');
-               if(modes) mvprintw(k+1,h-2,"S");
+               //if(modes) mvprintw(k+1,h-2,"S");
                customprint(k,h-1,'H');
                h--;
             }
@@ -1241,28 +1266,53 @@ void moverroom(int pos,int x,int l,int h,int k){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage                ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='Q'||x=='Q'||z=='Q'||a=='Q'||d=='Q'||e=='Q'||w=='Q'||q=='Q'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage               ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='I'||x=='I'||z=='I'||a=='I'||d=='I'||e=='I'||w=='I'||q=='I'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage                ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='S'||x=='S'||z=='S'||a=='S'||d=='S'||e=='S'||w=='S'||q=='S'){
             health--;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage              ");
             modes=1;
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         if(c=='U'||x=='U'||z=='U'||a=='U'||d=='U'||e=='U'||w=='U'||q=='U'){
             health--;
             modeu=1;
             mvprintw(0,70,"health: %d",health);
             mvprintw(0,0,"you got damage               ");
+            if(health<=0){
+                j=1;
+                endgame();
+                return;
+            }
         }
         char m=getch();
         switch(m){
@@ -2304,7 +2354,8 @@ void endgame(){
             break;
         }
     }
-    if(!j){
+    clear();
+    if(j){
         mvprintw(5,30,"YOU WON");
         mvprintw(6,30,"gold: %d",counterB*3+counterG);
     }

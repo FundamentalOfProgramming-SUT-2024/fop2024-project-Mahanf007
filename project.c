@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h> 
 #include <SDL2/SDL_mixer.h>
 #include <locale.h>
-int locker=0;// حواسم باشه دیوار رو تو دمیج چک کنم
+int locker=0;
 int error;
 int floorr=1;
 int counterY=0;
@@ -28,6 +28,7 @@ int counterQ=10;
 int counterI=15;
 int counterS=20;
 int counterU=25;
+int countert=0;
 const char* songs[3] = {
     "1.mp3",
     "2.mp3",
@@ -595,6 +596,7 @@ void printrooms(int x,int y,int l,int w,int pos){
                 if(g==2) mvprintw(y+j,x+i,"I");
                 if(g==3) mvprintw(y+j,x+i,"S");
                 if(g==4) mvprintw(y+j,x+i,"U");
+                if(g==5) mvprintw(y+j,x+i,"t");
             }
         }
     }
@@ -746,28 +748,28 @@ void moveroom(int pos,int x,int l,int h,int k){
         if(c=='D'||x=='D'||z=='D'||a=='D'||d=='D'||e=='D'||w=='D'||q=='D'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage              ");
         }
         if(c=='Q'||x=='Q'||z=='Q'||a=='Q'||d=='Q'||e=='Q'||w=='Q'||q=='Q'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage              ");
         }
         if(c=='I'||x=='I'||z=='I'||a=='I'||d=='I'||e=='I'||w=='I'||q=='I'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage               ");
         }
         if(c=='S'||x=='S'||z=='S'||a=='S'||d=='S'||e=='S'||w=='S'||q=='S'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage                ");
             modes=1;
         }
         if(c=='U'||x=='U'||z=='U'||a=='U'||d=='U'||e=='U'||w=='U'||q=='U'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage                 ");
         }
         char m=getch();
         switch(m){
@@ -1187,15 +1189,15 @@ void moveroom(int pos,int x,int l,int h,int k){
             break;
         case ' ':
             if(def==1||def==5){
-                mvprintw(k+1,h+1,".");
-                mvprintw(k+1,h,".");
-                mvprintw(k+1,h-1,".");
-                mvprintw(k,h-1,".");
-                mvprintw(k,h+1,".");
-                mvprintw(k-1,h+1,".");
-                mvprintw(k-1,h,".");
-                mvprintw(k-1,h-1,".");
-                mvprintw(0,0,"enemy killed ");
+                if(c!='|'&&c!='-') mvprintw(k+1,h+1,".");
+                if(x!='|'&&x!='-') mvprintw(k+1,h,".");
+                if(z!='|'&&z!='-') mvprintw(k+1,h-1,".");
+                if(a!='|'&&a!='-') mvprintw(k,h-1,".");
+                if(d!='|'&&d!='-') mvprintw(k,h+1,".");
+                if(e!='|'&&e!='-') mvprintw(k-1,h+1,".");
+                if(w!='|'&&w!='-') mvprintw(k-1,h,".");
+                if(q!='|'&&q!='-') mvprintw(k-1,h-1,".");
+                mvprintw(0,0,"enemy killed                  ");
                 break;
             }
             else{
@@ -1204,20 +1206,20 @@ void moveroom(int pos,int x,int l,int h,int k){
                 if(def==4) counterarrow--;
                 char dir=getch();
                 if(dir=='d'){
-                    mvprintw(k,h+1,".");
+                    if(d!='|'&&d!='-') mvprintw(k,h+1,".");
                 }
                 if(dir=='w'){
-                    mvprintw(k-1,h,".");
+                    if(w!='|'&&w!='-') mvprintw(k-1,h,".");
                 }
                 if(dir=='a'){
-                    mvprintw(k,h-1,".");
+                    if(a!='|'&&a!='-') mvprintw(k,h-1,".");
                 }
-                if(dir=='d'){
-                    mvprintw(k+1,h,".");
+                if(dir=='x'){
+                    if(x!='|'&&x!='-') mvprintw(k+1,h,".");
                 }
-                mvprintw(0,0,"enemy killed ");
+                mvprintw(0,0,"enemy killed                     ");
                 break;
-            }        
+            }         
         default:
             break;
         }
@@ -1238,29 +1240,29 @@ void moverroom(int pos,int x,int l,int h,int k){
         if(c=='D'||x=='D'||z=='D'||a=='D'||d=='D'||e=='D'||w=='D'||q=='D'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage                ");
         }
         if(c=='Q'||x=='Q'||z=='Q'||a=='Q'||d=='Q'||e=='Q'||w=='Q'||q=='Q'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage               ");
         }
         if(c=='I'||x=='I'||z=='I'||a=='I'||d=='I'||e=='I'||w=='I'||q=='I'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage                ");
         }
         if(c=='S'||x=='S'||z=='S'||a=='S'||d=='S'||e=='S'||w=='S'||q=='S'){
             health--;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage              ");
             modes=1;
         }
         if(c=='U'||x=='U'||z=='U'||a=='U'||d=='U'||e=='U'||w=='U'||q=='U'){
             health--;
             modeu=1;
             mvprintw(0,70,"health: %d",health);
-            mvprintw(0,0,"you got damage");
+            mvprintw(0,0,"you got damage               ");
         }
         char m=getch();
         switch(m){
@@ -1681,14 +1683,14 @@ void moverroom(int pos,int x,int l,int h,int k){
             break;
         case ' ':
             if(def==1||def==5){
-                mvprintw(k+1,h+1,".");
-                mvprintw(k+1,h,".");
-                mvprintw(k+1,h-1,".");
-                mvprintw(k,h-1,".");
-                mvprintw(k,h+1,".");
-                mvprintw(k-1,h+1,".");
-                mvprintw(k-1,h,".");
-                mvprintw(k-1,h-1,".");
+                if(c!='|'&&c!='-') mvprintw(k+1,h+1,".");
+                if(x!='|'&&x!='-') mvprintw(k+1,h,".");
+                if(z!='|'&&z!='-') mvprintw(k+1,h-1,".");
+                if(a!='|'&&a!='-') mvprintw(k,h-1,".");
+                if(d!='|'&&d!='-') mvprintw(k,h+1,".");
+                if(e!='|'&&e!='-') mvprintw(k-1,h+1,".");
+                if(w!='|'&&w!='-') mvprintw(k-1,h,".");
+                if(q!='|'&&q!='-') mvprintw(k-1,h-1,".");
                 mvprintw(0,0,"enemy killed                  ");
                 break;
             }
@@ -1698,16 +1700,16 @@ void moverroom(int pos,int x,int l,int h,int k){
                 if(def==4) counterarrow--;
                 char dir=getch();
                 if(dir=='d'){
-                    mvprintw(k,h+1,".");
+                    if(d!='|'&&d!='-') mvprintw(k,h+1,".");
                 }
                 if(dir=='w'){
-                    mvprintw(k-1,h,".");
+                    if(w!='|'&&w!='-') mvprintw(k-1,h,".");
                 }
                 if(dir=='a'){
-                    mvprintw(k,h-1,".");
+                    if(a!='|'&&a!='-') mvprintw(k,h-1,".");
                 }
-                if(dir=='d'){
-                    mvprintw(k+1,h,".");
+                if(dir=='x'){
+                    if(x!='|'&&x!='-') mvprintw(k+1,h,".");
                 }
                 mvprintw(0,0,"enemy killed                     ");
                 break;
